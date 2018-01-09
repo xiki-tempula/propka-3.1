@@ -810,6 +810,8 @@ def checkCooArgException(group_coo, group_arg, version):
         # remove closest atoms before we attemp to find the runner-up pair
         atoms_coo.remove(closest_coo_atom)
         atoms_arg.remove(closest_arg_atom)
+        if not atoms_coo or not closest_arg_atom:
+            return exception, value_tot
 
 
     return exception, value_tot

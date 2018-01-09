@@ -736,13 +736,14 @@ class AMD_group(Group):
         the_nitrogen = self.atom.get_bonded_elements('N')
 
         # add protons to the nitrogen
-        my_protonator.protonate_atom(the_nitrogen[0])
-        the_hydrogens = the_nitrogen[0].get_bonded_elements('H')
+        if the_nitrogen:
+            my_protonator.protonate_atom(the_nitrogen[0])
+            the_hydrogens = the_nitrogen[0].get_bonded_elements('H')
+            self.set_interaction_atoms(the_nitrogen + the_hydrogens, the_oxygen)
 
         # set the center using the oxygen and nitrogen amide atoms
         self.set_center(the_oxygen+the_nitrogen)
 
-        self.set_interaction_atoms(the_nitrogen+the_hydrogens,the_oxygen)
 
         return
 
